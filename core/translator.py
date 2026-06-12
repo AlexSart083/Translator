@@ -136,12 +136,19 @@ class BaseTranslator:
 # ── Gemini ────────────────────────────────────────────────────────────────────
 
 GEMINI_MODELS = {
-    "gemini-2.0-flash-lite": "Gemini 2.0 Flash-Lite (Fast, Free Tier)",
-    "gemini-2.0-flash":      "Gemini 2.0 Flash (Balanced)",
-    "gemini-2.5-flash":      "Gemini 2.5 Flash (Latest Fast)",
-    "gemini-2.5-pro":        "Gemini 2.5 Pro (Most Capable)",
-    "gemini-1.5-flash":      "Gemini 1.5 Flash (Stable)",
+    # --- Modelli Gemini (API Google AI Studio Free Tier) ---
+    "gemini-3.5-flash": "Gemini 3.5 Flash (Latest Fast, Near-Pro Intelligence)",
+    "gemini-3.1-flash-lite": "Gemini 3.1 Flash-Lite (Highest Efficiency, Low Latency)",
+    "gemini-2.5-flash": "Gemini 2.5 Flash (Stable Workhorse with Thinking)",
+    "gemini-2.5-flash-lite": "Gemini 2.5 Flash-Lite (High Throughput, Free Tier)",
+    "gemini-2.5-pro": "Gemini 2.5 Pro (Complex Reasoning, Highly Rate-Limited Free)",
+    
+    # --- Modelli Open Weights (Uso Locale / Gemma 4) ---
+    "gemma-4-12b-unified": "Gemma 4 12B (Local Multimodal, Encoder-Free, 16GB VRAM)",
+    "gemma-4-26b-moe": "Gemma 4 26B MoE (High-Performance Open-Weights, 3.8B Active)",
+    "gemma-4-e4b-edge": "Gemma 4 E4B (Edge Optimized, Ultra-Lightweight 4.5B)",
 }
+
 GEMINI_MODEL_NAMES = list(GEMINI_MODELS.keys())
 
 
