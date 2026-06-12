@@ -1,110 +1,80 @@
-# AI Translator
+# AI Translator – Streamlit
 
-A clean, modern desktop translation app powered by AI. Supports **Google Gemini** and **OpenRouter** (Llama, Mistral, Claude, GPT-4o Mini, and more).
+Versione web dell'AI Translator, eseguibile localmente o deployabile su [Streamlit Community Cloud](https://share.streamlit.io).
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
-![PySide6](https://img.shields.io/badge/PySide6-6.6%2B-green)
+## Privacy & sicurezza
 
----
-
-## Features
-
-- **Three AI modes**: Translate, Summarize, and Improve text
-- Translate between 55+ languages using AI (no dictionary-based translation)
-- Summarize long texts into concise key-point summaries
-- Improve text for clarity, grammar, flow, and readability
-- Provider choice: **Gemini** or **OpenRouter** (multiple models)
-- Auto-detect source language (Translate mode)
-- Swap source ↔ target language and text with one click
-- Copy output to clipboard
-- Persistent settings storing in `~/.ai_translator_settings.json`
-- API keys configurable via **Settings panel** or **environment variables**
-- Clean dark-mode UI built with PySide6
-- Non-blocking operations (run in background thread)
-- Keyboard shortcut: **Ctrl+Enter** to process
+- Le API key **non vengono mai salvate sul server**.
+- Vengono tenute solo nella sessione browser (in memoria).
+- Puoi **scaricare** un `config.json` locale e **ricariarlo** la prossima volta: il file rimane sul tuo computer.
+- Nessun database, nessun cloud storage proprietario.
 
 ---
 
-## Setup
+## Setup rapido
 
-### 1. Install dependencies
+### 1. Installa le dipendenze
 
 ```bash
 pip install -r requirements.txt
 ```
 
-> Python 3.10+ recommended.
+> Python 3.10+ raccomandato.
 
-### 2. Get API keys
-
-**Gemini** (free tier available):
-- Go to https://aistudio.google.com/apikey
-- Create a key and copy it
-
-**OpenRouter** (many free models):
-- Go to https://openrouter.ai/keys
-- Create an account and generate a key
-
-### 3. Configure API keys
-
-**Option A – Environment variables (recommended for dev):**
+### 2. Avvia l'app
 
 ```bash
-# macOS / Linux
-export GEMINI_API_KEY="your-key-here"
-export OPENROUTER_API_KEY="your-key-here"
-
-# Windows (PowerShell)
-$env:GEMINI_API_KEY = "your-key-here"
-$env:OPENROUTER_API_KEY = "your-key-here"
+streamlit run app.py
 ```
 
-**Option B – Settings panel:**
-- Launch the app, click the ⚙ gear icon in the top-right
-- Enter your keys in the relevant tab and click Save
+Il browser si apre automaticamente su `http://localhost:8501`.
 
-### 4. Run the app
+### 3. Configura le API key
 
-```bash
-python main.py
-```
+Nella barra laterale → **⚙ Impostazioni API** → incolla le chiavi → **Salva in sessione**.
+
+Per riutilizzarle in futuro: **⬇ Scarica config.json**, poi nella prossima sessione **Carica config.json**.
 
 ---
 
-## Project structure
+## Ottenere le API key
+
+| Provider    | URL                                          | Note                        |
+|-------------|----------------------------------------------|-----------------------------|
+| Gemini      | https://aistudio.google.com/apikey           | Piano gratuito disponibile  |
+| OpenRouter  | https://openrouter.ai/keys                   | Molti modelli gratuiti      |
+
+---
+
+## Deploy su Streamlit Community Cloud
+
+1. Carica questa cartella su GitHub (senza `config.json` — è locale!)
+2. Vai su https://share.streamlit.io → "New app"
+3. Punta al file `app.py`
+4. Le API key si inseriscono dall'interfaccia, non servono secrets lato server
+
+---
+
+## Struttura del progetto
 
 ```
-ai_translator/
-├── main.py                  # Entry point
+ai_translator_streamlit/
+├── app.py               # App Streamlit principale
 ├── requirements.txt
 ├── core/
 │   ├── __init__.py
-│   ├── translator.py        # Gemini + OpenRouter API clients
-│   └── settings.py          # Persistent settings (JSON)
-└── ui/
-    ├── __init__.py
-    ├── main_window.py       # Main window, layout, translation flow
-    └── settings_dialog.py   # Settings modal
+│   └── translator.py    # Logica Gemini + OpenRouter (framework-agnostic)
+└── README.md
 ```
 
 ---
 
-## Keyboard shortcuts
+## Funzionalità
 
-| Shortcut       | Action            |
-|----------------|-------------------|
-| Ctrl+Enter     | Translate         |
-
----
-
-## Possible improvements
-
-- **Streaming output** – show translation token-by-token as it arrives
-- **Translation history** – sidebar with past translations, searchable
-- **Favorites / glossary** – pin term pairs for consistent translations
-- **Detect language label** – show what language was auto-detected
-- **System tray** – minimize to tray, translate clipboard contents via hotkey
-- **Offline fallback** – bundle a tiny local model (e.g. NLLB via ctranslate2)
-- **macOS `.app` bundle / Windows `.exe`** – package with PyInstaller or Nuitka
-- **Themes** – light mode toggle
-- **Font size controls** – accessibility adjustment for the text areas
+- **Traduci** – 55+ lingue, rilevamento automatico
+- **Riassumi** – riassunto conciso in lingua a scelta
+- **Migliora** – chiarezza, grammatica, stile, leggibilità
+- Selezione provider: Gemini o OpenRouter (con scelta del modello)
+- Cronologia delle ultime 10 operazioni (in sessione)
+- File `config.json` scaricabile/caricabile localmente
+- Nessuna dipendenza esterna oltre a `streamlit`
