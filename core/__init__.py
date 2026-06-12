@@ -1,7 +1,6 @@
 """AI Translator – core package."""
 from .translator import (
-    GeminiTranslator,
-    OpenRouterTranslator,
+    process,
     TranslationError,
     MODES,
     LANGUAGES,
@@ -11,11 +10,9 @@ from .translator import (
     OPENROUTER_MODELS,
     OPENROUTER_MODEL_NAMES,
 )
-from .settings import load as load_settings, save as save_settings
 
 __all__ = [
-    "GeminiTranslator",
-    "OpenRouterTranslator",
+    "process",
     "TranslationError",
     "MODES",
     "LANGUAGES",
@@ -24,6 +21,4 @@ __all__ = [
     "GEMINI_MODEL_NAMES",
     "OPENROUTER_MODELS",
     "OPENROUTER_MODEL_NAMES",
-    "load_settings",
-    "save_settings",
 ]
