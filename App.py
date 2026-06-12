@@ -452,16 +452,21 @@ with st.sidebar:
         type=["json"],
         help="Il file viene letto solo localmente, nulla viene caricato su server.",
         label_visibility="visible",
+        key="config_uploader",
     )
+    # Usa nome + dimensione come ID stabile per evitare ricaricamenti
+    # ad ogni re-run di Streamlit (che è il comportamento di default)
     if uploaded is not None:
-        try:
-            cfg_loaded = json.loads(uploaded.read().decode("utf-8"))
-            _load_config(cfg_loaded)
-            st.success("Configurazione caricata!")
-            st.rerun()
-        except Exception as e:
-            st.error(f"Errore nel file: {e}")
-
+        file_id = f"{uploaded.name}_{uploaded.size}"
+        if st.session_state.get("_last_loaded_config") != file_id:
+            try:
+                cfg_loaded = json.loads(uploaded.read().decode("utf-8"))
+                _load_config(cfg_loaded)
+                st.session_state["_last_loaded_config"] = file_id
+                st.success("Configurazione caricata!")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Errore nel file: {e}")
     # ── History ───────────────────────────────────────────────────────────────
     if st.session_state.history:
         st.markdown('<div class="sidebar-section">🕒 Cronologia</div>',
