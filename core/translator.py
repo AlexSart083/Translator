@@ -179,12 +179,16 @@ class GeminiTranslator(BaseTranslator):
 # ── OpenRouter ────────────────────────────────────────────────────────────────
 
 OPENROUTER_MODELS = {
-    "meta-llama/llama-3.3-70b-instruct": "Llama 3.3 70B Instruct",
-    "mistralai/mistral-7b-instruct":     "Mistral 7B Instruct",
-    "anthropic/claude-3-haiku":          "Claude 3 Haiku",
-    "openai/gpt-4o-mini":                "GPT-4o Mini",
-    "google/gemma-3-27b-it:free":        "Gemma 3 27B (Free)",
-    "deepseek/deepseek-chat":            "DeepSeek Chat",
+    # Free Tier & Budget Models
+    "openrouter/free": "OpenRouter Free (Auto-Routing - Free Tier)",
+    "deepseek/deepseek-v4-flash": "DeepSeek V4 Flash (Ultra-Fast)",
+    
+    # Advanced Reasoning & Coding
+    "deepseek/deepseek-v4-pro": "DeepSeek V4 Pro (Deep Reasoning & Coding)",
+    "meta-llama/llama-4-maverick": "Llama 4 Maverick (Next-Gen Intelligence)",
+    
+    # Specialized / Mobile Optimized
+    "xiaomi/mimo-v2.5": "Xiaomi Mimo v2.5 (On-Device & Efficient)",
 }
 OPENROUTER_MODEL_NAMES = list(OPENROUTER_MODELS.keys())
 
