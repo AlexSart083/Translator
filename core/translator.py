@@ -144,7 +144,7 @@ GEMINI_MODELS = {
     "gemini-2.5-pro": "Gemini 2.5 Pro (Complex Reasoning, Highly Rate-Limited Free)",
     
     # --- Modelli Open Weights ( Gemma 4) ---
-    "gemma-4-26b-a4b-it": Gemma 4 26B MoE (High-Performance Open-Weights, )"
+    "gemma-4-26b-a4b-it": Gemma 4 26B MoE (High-Performance Open-Weights, )",
     "gemma-4-31b-it": "Gemma 4 31B (High-Performance Open-Weights)",
 }
 
